@@ -1,6 +1,6 @@
 ﻿
 
-char[] alphabet = new char[26]{'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
+char[] alphabet = new char[26] { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z' };
 string input;
 string cipherKey;
 
@@ -14,11 +14,12 @@ while (true)
     input = Console.ReadLine().ToLower();
 
     // If there are no integers => If the input is not empty or null => If the input only contains letters from the english alphabet 
-    if(!input.Any(char.IsDigit) && !string.IsNullOrEmpty(input) && IsAlphabetic(input))
+    if (!input.Any(char.IsDigit) && !string.IsNullOrEmpty(input) && IsAlphabetic(input))
     {
-      
+
         Console.WriteLine("Input Validated. Press any key to proceed...");
         Console.ReadKey();
+        Console.Clear();
         break;
     }
     else
@@ -37,12 +38,13 @@ while (true)
     Console.WriteLine("Please enter a 26 letter key for encryption. Use only alphabetic letters");
     cipherKey = Console.ReadLine().ToLower();
 
-    if(!cipherKey.Any(char.IsDigit) && !string.IsNullOrEmpty(cipherKey) && IsAlphabetic(cipherKey))
+    if (!cipherKey.Any(char.IsDigit) && !string.IsNullOrEmpty(cipherKey) && IsAlphabetic(cipherKey))
     {
-        if(cipherKey.Length == alphabet.Length)
+        if (cipherKey.Length == alphabet.Length)
         {
             Console.WriteLine("Input Validated. Press any key to encrypt your message...");
             Console.ReadKey();
+            Console.Clear();
 
             Console.WriteLine(input + "\n" + cipherKey + "\n" + Encrypt(input, cipherKey));
             Console.ReadKey();
@@ -50,10 +52,10 @@ while (true)
         }
         else
             Console.WriteLine("Your input was not 26 letters long");
-    }   
+    }
     else
         Console.WriteLine("Incorrect input");
-    
+
     Console.ReadKey();
 }
 
@@ -68,7 +70,7 @@ bool IsAlphabetic(string input)
     {
         foreach (char letters in alphabet)
         {
-            if(letter == letters)
+            if (letter == letters)
             {
                 validationPoints++;
                 break;
@@ -77,10 +79,10 @@ bool IsAlphabetic(string input)
     }
 
 
-    if(validationPoints == input.Length)
+    if (validationPoints == input.Length)
         return true;
     else
-        return false;  
+        return false;
 }
 
 // Compares each letter of the input to the alphabet
@@ -88,12 +90,12 @@ bool IsAlphabetic(string input)
 string Encrypt(string input, string cipherKey)
 {
     string encryptedString = "";
-    
+
     foreach (char letter in input)
     {
         for (int i = 0; i < alphabet.Length; i++)
         {
-            if(letter == alphabet[i])
+            if (letter == alphabet[i])
             {
                 encryptedString += cipherKey[i];
             }
